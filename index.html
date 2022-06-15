@@ -93,6 +93,22 @@
       .vertical-panes > .pane ~ .pane {
         border-left: 1px solid #ddd;
       }
+
+      .horizontal-panes {
+        width: 100%;
+        height: 100vh;
+        border: 1px solid #ccc;
+      }
+      .horizontal-panes > .pane {
+        text-align: left;
+        padding: 15px;
+        overflow: hidden;
+        background: #eee;
+      }
+      .horizontal-panes > .pane ~ .pane {
+        border-top: 1px solid #ccc;
+      }
+
       .heading {
         display: flex;
         justify-content: space-between;
@@ -122,6 +138,18 @@
         flex-direction: row;
         gap: 20px;
       }
+      select {
+        padding: 10px;
+        border: none;
+      }
+      .vertical {
+        width: 50%;
+        max-width: 80%;
+      }
+      .horizontal {
+        height: 50%;
+        max-height: 100%;
+      }
     </style>
   </head>
   <body>
@@ -130,19 +158,34 @@
         <div class="h3">Real Time HTML Editor</div>
         <div class="message" v-if="message">{{message}}</div>
         <div class="menus">
-          <toggle-switch :options="['One','Two']" />
-          <label class="switch">
-            <input type="checkbox" @change="darkMode=!darkMode" />
+          <div>
+            <label class="switch">
+              <input type="checkbox" @change="darkMode=!darkMode" />
+              <span class="slider round"></span>
+            </label>
+          </div>
 
-            <span class="slider round"></span>
-          </label>
-
-          <button @click="onCopy" tooltip="Copied">Copy</button>
+          <div class="form-group">
+            <label for="">Orientation</label>
+            <select class="form-control" v-model="orientation">
+              <option value="vertical">Vertical</option>
+              <option value="horizontal">Horizontal</option>
+            </select>
+          </div>
+          <div>
+            <button @click="saveToLocalStorage()">Save</button>
+          </div>
         </div>
       </div>
 
-      <multipane class="vertical-panes" layout="vertical">
-        <div class="pane" :style="{  width: '50%', maxWidth: '80%' }">
+      <multipane
+        :class="{'vertical-panes':orientation=='vertical','horizontal-panes':orientation=='horizontal'}"
+        :layout="orientation"
+      >
+        <div
+          class="pane"
+          :class="{'vertical':orientation=='vertical','horizontal':orientation=='horizontal'}"
+        >
           <code-editor
             v-model="source"
             :language_selector="true"
@@ -151,16 +194,14 @@
             border_radius="0px"
             :theme="darkMode?'dark':'light'"
             :languages="[['html','HTML']]"
-            @keyup="onTextChange"
             width="100%"
             height="100%"
           ></code-editor>
         </div>
-
         <multipane-resizer> </multipane-resizer>
         <div
           class="pane"
-          :style="{ width: '50%', maxWidth: '50%' }"
+          :class="{'vertical':orientation=='vertical','horizontal':orientation=='horizontal'}"
           v-html="source"
         ></div>
       </multipane>
@@ -173,17 +214,23 @@
           source: "<h1>Hello World</h1>",
           message: "",
           darkMode: true,
+          orientation: "vertical",
         },
         components: {
           "code-editor": CodeEditor,
         },
 
         mounted() {
-          this.source = localStorage.getItem("code") ?? this.source;
+          this.readFromLocalStorage();
         },
         methods: {
-          onTextChange() {
+          readFromLocalStorage() {
+            console.log(localStorage.getItem("code"));
+            this.source = localStorage.getItem("code") ?? this.source;
+          },
+          saveToLocalStorage() {
             localStorage.setItem("code", this.source);
+            console.log(localStorage.getItem("code"));
           },
           onCopy() {
             navigator.clipboard.writeText(this.source);

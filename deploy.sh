@@ -1,1 +1,1 @@
-eval `ssh-agent` && ssh-add ~/github && git add . && git commit -m "New Update `date`" && git push origin master 
+eval `ssh-agent` && ssh-add ~/github && git add . && git commit -m "New Update : Orientation+Save feature added `date`" && git push origin master 
