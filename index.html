@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real Time HTML Editor</title>
+
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-multipane.min.js"></script>
+
+    <link rel="stylesheet" href="css/code_editor.min.css" />
+
+    <link rel="stylesheet" href="css/highlight.min.css" />
+    <script src="js/highlight.min.js"></script>
+    <script src="js/code_editor.prod.js"></script>
+
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      /**SWITCH START**/
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider {
+        background-color: #2196f3;
+      }
+
+      input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 34px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+
+      /**TOGGLE END */
+      .vertical-panes {
+        width: 100%;
+        height: 100vh;
+      }
+      .vertical-panes > .pane {
+        overflow: hidden;
+        /* background: #eee; */
+      }
+      .vertical-panes > .pane ~ .pane {
+        border-left: 1px solid #ddd;
+      }
+      .heading {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 4px solid #ccc;
+      }
+      .heading button {
+        border: none;
+        padding: 10px;
+      }
+      .heading button:hover {
+        background-color: #ddd;
+      }
+      .message {
+        background-color: azure;
+      }
+      .editor {
+        font-size: 1.2em;
+      }
+      .heading .h3 {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: blue;
+      }
+      .menus {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="heading">
+        <div class="h3">Real Time HTML Editor</div>
+        <div class="message" v-if="message">{{message}}</div>
+        <div class="menus">
+          <toggle-switch :options="['One','Two']" />
+          <label class="switch">
+            <input type="checkbox" @change="darkMode=!darkMode" />
+
+            <span class="slider round"></span>
+          </label>
+
+          <button @click="onCopy" tooltip="Copied">Copy</button>
+        </div>
+      </div>
+
+      <multipane class="vertical-panes" layout="vertical">
+        <div class="pane" :style="{  width: '50%', maxWidth: '80%' }">
+          <code-editor
+            v-model="source"
+            :language_selector="true"
+            :wrap_code="true"
+            :display_language="true"
+            border_radius="0px"
+            :theme="darkMode?'dark':'light'"
+            :languages="[['html','HTML']]"
+            @keyup="onTextChange"
+            width="100%"
+            height="100%"
+          ></code-editor>
+        </div>
+
+        <multipane-resizer> </multipane-resizer>
+        <div
+          class="pane"
+          :style="{ width: '50%', maxWidth: '50%' }"
+          v-html="source"
+        ></div>
+      </multipane>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          source: "<h1>Hello World</h1>",
+          message: "",
+          darkMode: true,
+        },
+        components: {
+          "code-editor": CodeEditor,
+        },
+
+        mounted() {
+          this.source = localStorage.getItem("code") ?? "<h1>Hello World</h1>";
+        },
+        methods: {
+          onTextChange() {
+            localStorage.setItem("code", this.source);
+          },
+          onCopy() {
+            navigator.clipboard.writeText(this.source);
+            this.message = "Copied";
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
