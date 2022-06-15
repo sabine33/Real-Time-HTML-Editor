@@ -148,6 +148,12 @@
         height: 50%;
         max-height: 100%;
       }
+      /** other styles */
+      .iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
     </style>
   </head>
   <body>
@@ -197,11 +203,11 @@
           ></code-editor>
         </div>
         <multipane-resizer> </multipane-resizer>
-        <div
-          class="pane"
+        <iframe
+          class="pane iframe"
           :class="{'vertical':orientation=='vertical','horizontal':orientation=='horizontal'}"
-          v-html="source"
-        ></div>
+          :srcdoc="source"
+        ></iframe>
       </multipane>
     </div>
 
