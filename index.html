@@ -179,7 +179,7 @@
         },
 
         mounted() {
-          this.source = localStorage.getItem("code") ?? "<h1>Hello World</h1>";
+          this.source = localStorage.getItem("code") ?? this.source;
         },
         methods: {
           onTextChange() {
