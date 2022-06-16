@@ -1,0 +1,138 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+/** Switch styles **/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/** vertical panes **/
+.vertical-panes {
+  width: 100%;
+  height: 100vh;
+}
+.vertical-panes > .pane {
+  overflow: hidden;
+  /* background: #eee; */
+}
+.vertical-panes > .pane ~ .pane {
+  border-left: 1px solid #ddd;
+}
+
+/** Horizontal Panes **/
+.horizontal-panes {
+  width: 100%;
+  height: 100vh;
+  border: 1px solid #ccc;
+}
+.horizontal-panes > .pane {
+  overflow: hidden;
+}
+
+/** Heading **/
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 4px solid #ccc;
+}
+.heading button {
+  border: none;
+  padding: 10px;
+}
+.heading button:hover {
+  background-color: #ddd;
+}
+
+.editor {
+  font-size: 1.2em;
+}
+.heading .title {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #222;
+}
+/** Menu Items **/
+.menus {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+select {
+  padding: 10px;
+  border: none;
+}
+
+/* horizontal & vertical styles */
+.vertical {
+  width: 50%;
+  max-width: 90%;
+}
+.horizontal {
+  height: 50%;
+  max-height: 100%;
+}
+/** other styles */
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
