@@ -3,7 +3,7 @@
     <div class="title">Real Time HTML Editor</div>
     <div class="message" v-if="message">{{ message }}</div>
     <div class="menus">
-      <div>
+      <div class="switch">
         <label class="switch">
           <input type="checkbox" v-model="darkMode" />
           <span class="slider round"></span>
