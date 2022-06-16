@@ -24,8 +24,10 @@ export default new Vuex.Store({
     saveCode(state) {
       console.log("written");
       localStorage.setItem("code", state.source);
-      // navigator.clipboard.writeText(state.source);
       state.message = "Saved";
+    },
+    copyToClipboard(state) {
+      navigator.clipboard.writeText(state.source);
     },
   },
   actions: {},

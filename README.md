@@ -1,4 +1,4 @@
-# Real TIME HTML EDITOR PROJECT
+# Real Time HTML Editor 
 
 This is a real time html editor which provides live preview of your html code as soon as you type. It also has storage built in so your code won't vanish on reload.
 
