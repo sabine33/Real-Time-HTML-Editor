@@ -1,3 +1,5 @@
+[![Build Status](https://app.travis-ci.com/sabine33/Real-Time-HTML-Editor.svg?branch=main)](https://app.travis-ci.com/sabine33/Real-Time-HTML-Editor)
+
 # Real Time HTML Editor 
 
 This is a real time html editor which provides live preview of your html code as soon as you type. It also has storage built in so your code won't vanish on reload.
