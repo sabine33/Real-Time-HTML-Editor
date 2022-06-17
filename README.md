@@ -8,8 +8,6 @@ This is a real time html editor which provides live preview of your html code as
 # Output
 ![Demo!](/demo.png "Demo")
 
-
-
 ## Features
 * Real time html editor
 * Dark Mode/Light Mode

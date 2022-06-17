@@ -1,1 +1,1 @@
-eval `ssh-agent` && ssh-add ~/github && npm run build && git add . && git commit -m "$1 @ `date`" && git push origin main
+eval `ssh-agent` && ssh-add ~/github && npm run build && git add . && git commit -m "$1 @ `date`" && git push --set-upstream origin main
