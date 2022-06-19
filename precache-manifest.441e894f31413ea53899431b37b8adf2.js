@@ -1,14 +1,14 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e6b7d401bae1e9d2327a",
-    "url": "/Real-Time-HTML-Editor/css/app.945a303b.css"
+    "revision": "c7f963e15ed33479180e",
+    "url": "/Real-Time-HTML-Editor/css/app.37e8a495.css"
   },
   {
     "revision": "242e44a897de72ae4f9d",
     "url": "/Real-Time-HTML-Editor/css/chunk-vendors.aa634cc0.css"
   },
   {
-    "revision": "287341ee264eb025860e970cf62cc5b7",
+    "revision": "1e99f8be32ec1c4b1bd5915c036f5c42",
     "url": "/Real-Time-HTML-Editor/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Real-Time-HTML-Editor/js/about.a3279fe5.js"
   },
   {
-    "revision": "e6b7d401bae1e9d2327a",
-    "url": "/Real-Time-HTML-Editor/js/app.46d295c9.js"
+    "revision": "c7f963e15ed33479180e",
+    "url": "/Real-Time-HTML-Editor/js/app.07d5b2eb.js"
   },
   {
     "revision": "242e44a897de72ae4f9d",

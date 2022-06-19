@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Real-Time-HTML-Editor/precache-manifest.e031566bcc2aa10755f150db638c2280.js"
+  "/Real-Time-HTML-Editor/precache-manifest.441e894f31413ea53899431b37b8adf2.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "htmleditor"});
